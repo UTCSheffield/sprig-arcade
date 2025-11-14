@@ -1,7 +1,12 @@
 # builds the pages after the first part of build.py has run.
-# The TODO items are straight out of the diagram
+# TODO : Isa get templates setup 
+# templates/gallery.html.j2 #put the gallery html you have in here
+# templates/game.html.j2 # put the game page code in here
+# existing assests to go in the css amd scripts to copy into build later
 
-# TODO : data = read metadata.json
+# The following TODO items are straight out of the diagram
+
+# TODO : data = read build/metadata.json
 
 # TODO : load game page template
 
