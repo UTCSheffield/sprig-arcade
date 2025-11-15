@@ -1,4 +1,5 @@
 from jinja2 import Environment, FileSystemLoader
+from types import SimpleNamespace
 import os
 import re
 
@@ -32,8 +33,9 @@ games = {}
 
 env = Environment(loader = FileSystemLoader('templates'))
 
-gallery = env.get_template('gallery.html.j2')
-game = env.get_template('game.html.j2')
+templates = SimpleNamespace()
+templates.gallery = env.get_template('gallery.html.j2')
+templates.game = env.get_template('game.html.j2')
 # @endsection setup
 
 # @section: node
@@ -95,7 +97,7 @@ for game in os.listdir("./sprig/games"):
         # @section: render game page
         outPath = os.path.join('build', 'games', game.replace(".js", ""), 'index.html')
         os.makedirs(os.path.dirname(outPath), exist_ok=True)
-        render = game.render(slug=game, game=games[game])
+        render = templates.game.render(slug=game, game=games[game])
         with open(outPath, 'w', encoding='utf-8') as outFile:
             outFile.write(render)
         # @endsection render game page
@@ -104,7 +106,7 @@ for game in os.listdir("./sprig/games"):
 # @endsection process games
 
 # @section: render gallery
-render = gallery.render(games=games)
+render = templates.gallery.render(games=games)
 with open(os.path.join('build', 'index.html'), 'w', encoding='utf-8') as outFile:
     outFile.write(render)
 
