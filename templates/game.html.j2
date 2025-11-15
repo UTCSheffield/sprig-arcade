@@ -38,6 +38,39 @@
   <canvas id="canvas" width="1000" height="800" tabindex="0"></canvas>
 </div>
   <script type="module">
+  import { webEngine } from "https://esm.sh/sprig@1/web";
+
+  async function start() {
+    const canvas = document.getElementById('canvas');
+    const game = webEngine(canvas);
+    await Promise.resolve();
+
+    // try a couple times to avoid initial race
+    for (let i = 0; i < 3; i++) {
+      try {
+        const r = await fetch(`/games/{{ slug }}.js`);
+        if (!r.ok) throw new Error('status ' + r.status);
+        const code = await r.text();
+        const fn = new Function(...Object.keys(game.api), code);
+        fn(...Object.values(game.api));
+        canvas.focus();
+        return;
+      } catch (e) {
+        await new Promise(res => setTimeout(res, 120 * (i + 1)));
+      }
+    }
+
+    console.error('Failed to load /games/{{ slug }}.js after retries');
+  }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+</script>
+
+  <script type="module">
     import { webEngine } from "https://esm.sh/sprig@1/web";
 
     const canvas = document.getElementById("canvas");
@@ -48,13 +81,10 @@
       .then(code => {
         const fn = new Function(...Object.keys(game.api), code);
         fn(...Object.values(game.api));
-      })
-      .catch(err => console.error('Cant load game ', err));
+        canvas.focus();
+      });
 
     document.addEventListener('click', () => canvas.focus());
-    
-    // Also focus on page load
-    window.addEventListener('load', () => canvas.focus());
   </script>
 </body>
 </html>
