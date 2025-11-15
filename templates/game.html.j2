@@ -51,10 +51,13 @@
     const canvas = document.getElementById("canvas");
     const game = webEngine(canvas);
 
-    fetch(`/games/{{ slug }}.js`)
+    fetch(`/games/{{ slug }}.js`    )
+
       .then(r => r.text())
       .then(code => {
         const fn = new Function(...Object.keys(game.api), code);
+
+
         fn(...Object.values(game.api));
         canvas.focus();
       });
