@@ -1,6 +1,8 @@
 # Build Artifacts
 sprig
 games
+node*
+package-lock.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
