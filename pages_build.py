@@ -10,12 +10,10 @@
 import os
 import json
 
+os.system("cp -r css build/css")
 
 with open('build/metadata.json', 'r',  encoding='utf-8') as file:
-
     data = json.load(file)
-
-
 
 from jinja2 import Environment, FileSystemLoader
 env = Environment(loader = FileSystemLoader('templates'))
