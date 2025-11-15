@@ -52,14 +52,17 @@ for game in os.listdir("./sprig/games"):
         content = gameFile.read()
 
         # @section: extract metadata
-        title = re.search(r"@title:\s(.*)", content, re.IGNORECASE).group(1).strip()
-        if title is None: continue
+        try:
+            title = re.search(r"@title:\s(.*)", content, re.IGNORECASE).group(1).strip()
+            if title is None: continue
 
-        author = re.search(r"@author:\s(.*)", content, re.IGNORECASE).group(1).strip()
-        if author is None: continue
+            author = re.search(r"@author:\s(.*)", content, re.IGNORECASE).group(1).strip()
+            if author is None: continue
 
-        description = re.search(r"@description:\s(.*)", content, re.IGNORECASE).group(1).strip()
-        if description is None: continue
+            description = re.search(r"@description:\s(.*)", content, re.IGNORECASE).group(1).strip()
+            if description is None: continue
+        except:
+            continue
         # @endsection extract metadata
 
         # @section: filter by author
