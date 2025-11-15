@@ -93,7 +93,7 @@ for game in os.listdir("./sprig/games"):
         # @endsection add game metadata
 
         # @section: render game page
-        outPath = os.path.join('build', 'games', game, 'index.html')
+        outPath = os.path.join('build', 'games', game.replace(".js", ""), 'index.html')
         os.makedirs(os.path.dirname(outPath), exist_ok=True)
         render = game.render(slug=game, game=games[game])
         with open(outPath, 'w', encoding='utf-8') as outFile:
