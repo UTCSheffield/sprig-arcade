@@ -43,6 +43,3 @@ with open(os.path.join('build', 'index.html'), 'w', encoding='utf-8') as outfile
     outfile.write(galleryhtml)
 
     
-
-import shutil
-shutil.copytree('css', 'build/css', dirs_exist_ok=True)
