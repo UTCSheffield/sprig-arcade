@@ -31,20 +31,18 @@ os.system("rm -rf package-lock.json")
 # @endsection cleanup
 
 # @section: setup
-AUTHORS = ["anonymous"]
+
+AUTHORS = []
 
 with open(f"./AUTHORS.txt", encoding="utf-8", errors="ignore") as authorsFile:
     lines = authorsFile.readlines()
     AUTHORS = [line.strip().lower() for line in lines]
-    print(AUTHORS)
-
 
 os.mkdir("./build")
 os.mkdir("./build/games")
-#os.mkdir("./build/assets")
 os.system("git clone https://github.com/hackclub/sprig --depth 1 --branch main")
 
-shutil.copytree("./assets", "./build/assets", dirs_exist_ok=True) 
+shutil.copytree("./assets", "./build/assets", dirs_exist_ok=True)
 
 games = {}
 
@@ -86,14 +84,12 @@ for game in os.listdir("./sprig/games"):
         # @endsection extract metadata
 
         # @section: filter by author
-        if author.lower() in AUTHORS:
-            print(f"[INFO]: Including game '{game}' by author '{author}'")
-            
-            with open(f"./build/games/{game}", "w", encoding="utf-8") as outFile:
-                outFile.write(content)
-        else:
+        if author.lower() not in AUTHORS:
             continue
         # @endsection filter by author
+        print(f"[INFO]: Including game '{game}' by author '{author}'")
+
+        shutil.copy(f"./sprig/games/{game}", f"./build/games/{game}")
         
         # @section: create or copy image
         if os.path.exists(f"./sprig/games/img/{title}.png"):
