@@ -1,6 +1,6 @@
 # Sprig Arcade
 
-Visit https://utcsheffield.github.io/sprig-arcade/ for UTC Sheffield Olympic Legacy Park's Sprig Games 
+Visit https://utcsheffield.github.io/sprig-arcade/ for UTC Sheffield Olympic Legacy Park's Sprig Games or https://utcsheffield.github.io/sprig-arcade/random/ for a random one.
 
 If you think we should add your game add a "New Author" or "New Unapproved Sprig Game" issue.
 
