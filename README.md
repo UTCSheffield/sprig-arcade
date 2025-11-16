@@ -4,6 +4,13 @@ First set of issues are over here https://github.com/UTCSheffield/sprig-arcade-f
 
 We are now going to build in python & jinja with an aim to build on github pages.
 
+## Instructions
+* Fill out AUTHORS.txt with one author on each line
+* Fill out GAMES.txt with one game title on each line
+* Fill out GAMES.txt with one game url on each line (either github file preview link or raw link from anywhere)
+* Run build.py
+* Output in build folder
+
 ## General Idea
 
 ```mermaid
