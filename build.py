@@ -74,6 +74,8 @@ with open(f"./GAMES.txt", encoding="utf-8", errors="ignore") as gamesFile:
 
 os.mkdir("./build")
 os.mkdir("./build/games")
+os.mkdir("./build/random")
+
 
 shutil.copytree("./assets", "./build/assets", dirs_exist_ok=True)
 
@@ -82,6 +84,7 @@ env = Environment(loader = FileSystemLoader('templates'))
 templates = SimpleNamespace()
 templates.gallery = env.get_template('gallery.html.j2')
 templates.game = env.get_template('game.html.j2')
+templates.random = env.get_template('random.html.j2')
 
 print("[INFO] Setup Completed")
 # @endsection setup
@@ -162,6 +165,15 @@ with open(os.path.join('build', 'index.html'), 'w', encoding='utf-8') as outFile
 
 print('[SUCCESS] Built gallery page at build/index.html')
 # @endsection render gallery
+
+# @section: render random
+render = templates.random.render(games=games)
+with open(os.path.join('build', 'random', 'index.html'), 'w', encoding='utf-8') as outFile:
+    outFile.write(render)
+
+print('[SUCCESS] Built random page at build/random/index.html')
+# @endsection render random
+
 
 # @section: final cleanup
 os.system("rm -rf sprig")
