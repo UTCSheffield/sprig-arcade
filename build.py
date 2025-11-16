@@ -3,6 +3,7 @@ from types import SimpleNamespace
 import os
 import re
 import shutil
+import requests
 
 # Use 2 ways: 
 # python3 build.py ; python3 -m http.server -d build 
@@ -31,26 +32,58 @@ os.system("rm -rf package-lock.json")
 # @endsection cleanup
 
 # @section: setup
+games = {}
 
 AUTHORS = []
-
 with open(f"./AUTHORS.txt", encoding="utf-8", errors="ignore") as authorsFile:
     lines = authorsFile.readlines()
     AUTHORS = [line.strip().lower() for line in lines]
 
-os.mkdir("./build")
-os.mkdir("./build/games")
 os.system("git clone https://github.com/hackclub/sprig --depth 1 --branch main")
 
-shutil.copytree("./assets", "./build/assets", dirs_exist_ok=True)
+GAMES = []
+with open(f"./GAMES.txt", encoding="utf-8", errors="ignore") as gamesFile:
+    lines = gamesFile.readlines()
+    for lineno, line in enumerate(lines, start=1):
+        if line.startswith("#"):
+            continue
+        elif re.match(r"https?://", line):
+            m = re.match(r"https?://github\.com/([^/]+)/([^/]+)/blob/([^/]+)/(.*)", line)
+            if m:
+                user, repo, branch, path = m.groups()
+                line = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{path}"
 
-games = {}
+            try:
+                content = requests.get(line).text
+
+                try:
+                    title = re.search(r"@title:\s(.*)", content, re.IGNORECASE).group(1).strip()
+                    if title is None: continue
+
+                    GAMES.append(title.lower())
+                except:
+                    continue
+
+                with open(f"./sprig/games/{line.split("/")[-1]}", "w") as gameFile:
+                    gameFile.write(content)
+            except Exception as error:
+                print(f"[ERROR] Skipping invalid game in GAMES.txt line {lineno}")
+                continue
+        else:
+            GAMES.append(line.strip().lower())
+
+os.mkdir("./build")
+os.mkdir("./build/games")
+
+shutil.copytree("./assets", "./build/assets", dirs_exist_ok=True)
 
 env = Environment(loader = FileSystemLoader('templates'))
 
 templates = SimpleNamespace()
 templates.gallery = env.get_template('gallery.html.j2')
 templates.game = env.get_template('game.html.j2')
+
+print("[INFO] Setup Completed")
 # @endsection setup
 
 # @section: node
@@ -76,6 +109,7 @@ for game in os.listdir("./sprig/games"):
 
             author = re.search(r"@author:\s(.*)", content, re.IGNORECASE).group(1).strip()
             if author is None: continue
+            if title == "epic space invaders": author = "iLikeToCode" # patch
 
             description = re.search(r"@description:\s(.*)", content, re.IGNORECASE).group(1).strip()
             if description is None: continue
@@ -83,18 +117,20 @@ for game in os.listdir("./sprig/games"):
             continue
         # @endsection extract metadata
 
-        # @section: filter by author
-        if author.lower() not in AUTHORS:
+        # @section: filter by author or game title
+        if author.lower() not in AUTHORS and title.lower() not in GAMES:
             continue
-        # @endsection filter by author
+        # @endsection filter by author or game title
+        
         print(f"[INFO]: Including game '{game}' by author '{author}'")
 
-        shutil.copy(f"./sprig/games/{game}", f"./build/games/{game}")
+        with open(f"./build/games/{game}", "w") as gameFile:
+            gameFile.write(content.replace("fetched", ""))
         
         # @section: create or copy image
         if os.path.exists(f"./sprig/games/img/{title}.png"):
             print(f"[INFO]: Copying existing image for game '{game}'")
-            os.system(f"cp ./sprig/games/img/{title}.png ./build/games/{gameNoExt}.png")
+            shutil.copy(f"./sprig/games/img/{title}.png", f"./build/games/{gameNoExt}.png")
         else:
             print(f"[INFO]: Generating image for game '{title} ({game})'")
             os.system(f"GAME={game} {node_bin}/node thumbnail.js")
