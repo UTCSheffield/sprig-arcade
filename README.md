@@ -1,8 +1,8 @@
 # Sprig Arcade
 
-First set of issues are over here https://github.com/UTCSheffield/sprig-arcade-fork/issues
+Visit https://utcsheffield.github.io/sprig-arcade/ for UTC Sheffield Olympic Legacy Park's Sprig Games 
 
-We are now going to build in python & jinja with an aim to build on github pages.
+If you think we should add your game add a "New Author" or "New Unapproved Sprig Game" issue.
 
 ## Instructions
 * Fill out AUTHORS.txt with one author on each line
