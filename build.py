@@ -109,7 +109,6 @@ for game in os.listdir("./sprig/games"):
 
             author = re.search(r"@author:\s(.*)", content, re.IGNORECASE).group(1).strip()
             if author is None: continue
-            if title == "epic space invaders": author = "iLikeToCode" # patch
 
             description = re.search(r"@description:\s(.*)", content, re.IGNORECASE).group(1).strip()
             if description is None: continue
