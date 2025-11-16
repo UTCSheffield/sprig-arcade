@@ -31,7 +31,13 @@ os.system("rm -rf package-lock.json")
 # @endsection cleanup
 
 # @section: setup
-AUTHORS = ["anonymous", "sigfredo feat. whatware"]
+AUTHORS = ["anonymous"]
+
+with open(f"./AUTHORS.txt", encoding="utf-8", errors="ignore") as authorsFile:
+    lines = authorsFile.readlines()
+    AUTHORS = [line.strip().lower() for line in lines]
+    print(AUTHORS)
+
 
 os.mkdir("./build")
 os.mkdir("./build/games")
