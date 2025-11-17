@@ -26,7 +26,6 @@
 	<meta name="twitter:card" content="summary_large_image">
 
 	<link rel="stylesheet" href="./assets/stylesheet.css">
-
 	<link rel="stylesheet" href="./assets/button.css">
 	<link rel="stylesheet" href="./assets/gallery.css">
 
@@ -34,6 +33,23 @@
 	<style>
 	#search-input{
 	height: -webkit-fill-available;}
+
+	.randomButton{
+   height: 100%;
+   background: white;
+   border: 0.01px solid;
+   border-radius: 10px;
+   margin-right: 50px;
+   cursor: pointer;
+   font-family: inherit;
+   font-size: 15px;
+   transition: 0.4s ease-in-out;
+}
+
+.randomButton:hover{
+  transform: translate(-3px,-5px);
+  box-shadow: 3px 3px;
+}
 	</style>
 </head>
 
@@ -117,7 +133,9 @@ background-color: #eb7d26;
 												class="_input_1bpw1_1 "></div>
 									</div>
 								</div>
-								<div class="join-container"></div>
+								<a href="random/index.html">
+  	<button class="randomButton">Click me for a Random Game!</button>
+</a>
 							</div>
 							<div class="filter-tags"></div>
 							<div id="games">
@@ -137,6 +155,7 @@ background-color: #eb7d26;
 				<p style="font-weight: normal;
   font-style: normal; display: flex; flex: 1; padding-left: 30px">Sprig is a game engine that uses JavaScript to create 2d games. If you're under 18 you can get a game submitted to get the Sprig console!</p>
 			</div>
+			
 </body>
 
 </html>
