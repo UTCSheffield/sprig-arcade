@@ -48,6 +48,7 @@ with open(f"./GAMES.txt", encoding="utf-8", errors="ignore") as gamesFile:
         if line.startswith("#"):
             continue
         elif re.match(r"https?://", line):
+            line = line.strip()  # <--- IMPORTANT
             m = re.match(r"https?://github\.com/([^/]+)/([^/]+)/blob/(.*)", line)
             if m:
                 user, repo, path = m.groups()
@@ -62,6 +63,7 @@ with open(f"./GAMES.txt", encoding="utf-8", errors="ignore") as gamesFile:
 
                     GAMES.append(title.lower())
                 except:
+                    print(f"[ERROR] Could not extract title metadata from game {lineno}")
                     continue
 
                 with open(f"./sprig/games/{line.split("/")[-1]}", "w") as gameFile:
@@ -123,7 +125,7 @@ for game in os.listdir("./sprig/games"):
         if author.lower() not in AUTHORS and title.lower() not in GAMES:
             continue
         # @endsection filter by author or game title
-        
+
         print(f"[INFO]: Including game '{game}' by author '{author}'")
 
         with open(f"./build/games/{game}", "w") as gameFile:
