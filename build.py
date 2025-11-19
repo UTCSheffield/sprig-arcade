@@ -5,13 +5,12 @@ import re
 import shutil
 import requests
 
-# Use 2 ways: 
-# python3 build.py ; python3 -m http.server -d build 
-# This can't access the src assets and is like a netfliy webroot is dir set up
 # python3 build.py ; python3 -m http.server 
-# More like github pages you need to navigate into build 
-# (watch out for files loading from original assets not the build/assest)
-# Check it works both ways
+# More like github pages you need to navigate into build 	# like github pages you need to navigate into webroot/build 
+# python3 build.py ; python3 -m http.server -d build 
+# This is like a netfliy webroot is /build set up
+# (watch out for files loading from original assets not the build/assest)	# (watch out for files loading from original assets not the build/assest)
+# Check it works both ways	# Check it works both ways
 
 # @section: monkey patch
 _original_system = os.system
@@ -78,8 +77,7 @@ os.mkdir("./build")
 os.mkdir("./build/games")
 os.mkdir("./build/random")
 
-
-shutil.copytree("./assets", "./build/assets", dirs_exist_ok=True)
+shutil.copytree("./src_assets", "./build/assets", dirs_exist_ok=True)
 
 env = Environment(loader = FileSystemLoader('templates'))
 
