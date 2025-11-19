@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: wheat;
+  background-color: rgb(255, 255, 255);
 }
 
 canvas {
