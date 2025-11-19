@@ -260,7 +260,7 @@ aside {
   text-align: center;
 }
 
-aside>img {
+aside img {
   object-fit: cover;
   display: inline;
   border-radius: 100px;
@@ -274,7 +274,7 @@ aside>p {
   flex: 1;
   padding-top: 20px;
   text-align: center;
-  font-size: 14px;
+  font-size: 1.2rem;
 }
 
 nav {
@@ -291,7 +291,7 @@ nav {
 main {
   margin: auto;
   width: 65%;
-  padding: 0px;  
+  padding: 0px;
 }
 
 .randomButton {
