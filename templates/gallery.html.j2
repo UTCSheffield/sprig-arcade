@@ -28,14 +28,7 @@
 </head>
 
 <body>
-    <aside>
-	    <img src="https://user-images.githubusercontent.com/27078897/186769641-5b1181b4-9969-4276-9fa0-9f15140e4a9b.jpg" alt="Sprig Console" width="120" height="120">
-	    <br>
-        <p>
-            Sprig is a game engine that uses JavaScript to create 2d games. 
-            If you're under 18 you can get a game submitted to get the Sprig console!
-        </p>
-    </aside>
+    {% include 'sprig_info.html.j2' %}
     <header itemscope itemtype="http://schema.org/Organization"> 
         <a href="https://www.utcsheffield.org.uk/olp" itemprop="url" id="logo">
             <picture>
@@ -82,9 +75,8 @@
             
         </div>
         <div class="filter-tags"></div>
-        
         <a href="./random">
-            <button class="randomButton">Click me for a Random Game!</button>
+            <button class="randomButton">Random Game!</button>
         </a>
         -->#}
     </nav>
