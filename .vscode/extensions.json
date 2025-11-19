@@ -2,6 +2,7 @@
   "recommendations": [
     "apouuuuuuu.section-bloc",
     "ms-python.python",
-    "usernamehw.errorlens"
+    "usernamehw.errorlens",
+    "wholroyd.jinja"
   ]
 }
