@@ -7,7 +7,10 @@
   <link rel="icon" type="image/png" href="../assets/utc-olp.png">
 </head>
 <body>
-  <canvas id="canvas" width="800" height="600" tabindex="0"></canvas>
+  {% include 'sprig_info.html.j2' %}
+  <main>
+    <canvas id="canvas" width="800" height="600" tabindex="0"></canvas>
+  </main>
   <script type="module">
     import { webEngine } from "https://esm.sh/sprig@1/web";
   
