@@ -28,7 +28,6 @@
 </head>
 
 <body>
-    {% include 'sprig_info.html.j2' %}
     <header itemscope itemtype="http://schema.org/Organization"> 
         <a href="https://www.utcsheffield.org.uk/olp" itemprop="url" id="logo">
             <picture>
@@ -81,7 +80,8 @@
         -->#}
     </nav>
     <main>
-        <div id="games">
+        {% include 'sprig_info.html.j2' %}
+        <section id="games">
             {% for filename, game_data in games.items() %}
                 <a href="./games/{{ filename.replace('.js', '') }}/" class="game">
                     <img src="./games/{{ filename }}.png" alt="thumbnail">
@@ -89,7 +89,7 @@
                     <p class="author">by {{ game_data.author or 'Unknown' }}</p>
                 </a>
             {% endfor %}
-        </div>
+        </section>
     </main>
 </body>
 

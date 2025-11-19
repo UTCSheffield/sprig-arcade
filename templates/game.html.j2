@@ -7,9 +7,15 @@
   <link rel="icon" type="image/png" href="../../assets/utc-olp.png">
 </head>
 <body>
-  {% include 'sprig_info.html.j2' %}
+  
   <main>
+    {% include 'sprig_info.html.j2' %}
     <canvas id="canvas" width="800" height="600" tabindex="0"></canvas>
+    <aside id="game_info">
+      <h3  id="title">{{ game.title or filename }}</h3>
+      <p class="author">by <span id="author">{{ game.author or 'Unknown' }}</span></p>
+      <p id="description">{{ game.description or '-' }}</p>
+    </aside>
   </main>
   <script type="module">
     import { webEngine } from "https://esm.sh/sprig@1/web";

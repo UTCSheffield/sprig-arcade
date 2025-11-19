@@ -7,9 +7,15 @@
   <link rel="icon" type="image/png" href="../assets/utc-olp.png">
 </head>
 <body>
-  {% include 'sprig_info.html.j2' %}
   <main>
+    {% include 'sprig_info.html.j2' %}
     <canvas id="canvas" width="800" height="600" tabindex="0"></canvas>
+    <aside id="game_info">
+      <h3 id="title">-</h3>
+      <p class="author">by <span id="author"></span></p>
+      <p id="description">-</p>
+    </aside>
+
   </main>
   <script type="module">
     import { webEngine } from "https://esm.sh/sprig@1/web";
@@ -19,6 +25,11 @@
     let i = Math.floor(Math.random() * slugs.length);
     const slug = slugs[i]
     console.log("slug", slug)
+    
+    document.getElementById("title").innerHTML = games[slug].title
+    document.getElementById("author").innerHTML = games[slug].author
+    document.getElementById("description").innerHTML = games[slug].description
+
     const canvas = document.getElementById("canvas");
     fetch("../games/"+slug+".js")
       .then(r => r.text())
