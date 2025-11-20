@@ -200,7 +200,7 @@ button:hover{
   box-shadow: 6px 6px;
 }
 button:active{
-  transform: scale(-4);
+  transform: scale(-1);
 }
 
 .author{
