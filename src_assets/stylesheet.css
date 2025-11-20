@@ -183,7 +183,23 @@ aside {
 }
 
 h3, aside{
-  font-size: 50px;
+  font-size: 40px;
+}
+
+button{
+  padding: 10px;
+  background-color: white;
+  font-family: inherit;
+  font-size: 20px;
+  transition: 0.4s ease-in-out;
+}
+
+button:hover{
+  transform: translate(-3px,-5px);
+  box-shadow: 6px 6px;
+}
+button:active{
+  transform: scale(-4);
 }
 
 .author{
