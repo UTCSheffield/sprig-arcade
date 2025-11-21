@@ -213,14 +213,12 @@ button:active{
 }
 
 #sprig_info{
- position: static;
   top: 0;
   left: 0;
   padding-top: 15%;
 }
 
 #game_info{
- 
   top: 0;
   right: 0;
 }

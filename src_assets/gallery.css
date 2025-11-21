@@ -65,9 +65,12 @@ p {
 
 #sprig_info{
  position: absolute;
-  top: 0;
-  left: 0;
-  padding-top: 15%;
+  
+}
+
+#game_info{
+ 
+ position: absolute;
 }
 
 .randombutton:hover {
