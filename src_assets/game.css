@@ -20,3 +20,13 @@ canvas {
   width: auto;
   box-sizing: inherit;
 }
+
+#sprig_info{
+ position: static;
+  
+}
+
+#game_info{
+ 
+ position: static;
+}

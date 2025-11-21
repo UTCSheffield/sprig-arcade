@@ -174,7 +174,12 @@ select {
   user-select: none;
 }
 
+main{
+  display:flex;
+}
+
 aside {
+  font-size: calc(1vw + 1vh);
   display: block;
   align-items: center;
   width: 18%;
@@ -183,7 +188,7 @@ aside {
 }
 
 h3, aside{
-  font-size: 40px;
+  font-size: calc(1vw + 1vh + 10px);
    margin-bottom: 10px;
 }
 
@@ -208,14 +213,14 @@ button:active{
 }
 
 #sprig_info{
- position: absolute;
+ position: static;
   top: 0;
   left: 0;
   padding-top: 15%;
 }
 
 #game_info{
- position: absolute;
+ 
   top: 0;
   right: 0;
 }
