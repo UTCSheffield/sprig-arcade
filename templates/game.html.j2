@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>{{ game.title or slug }}</title>
+  <link rel="stylesheet" href="../../assets/stylesheet.css">
   <link rel="stylesheet" href="../../assets/game.css">
   <link rel="icon" type="image/png" href="../../assets/utc-olp.png">
 </head>
 <body>
-  
   <main>
     {% include 'sprig_info.html.j2' %}
     <canvas id="canvas" width="800" height="600" tabindex="0"></canvas>
@@ -15,11 +15,15 @@
       <h3  id="title">{{ game.title or filename }}</h3>
       <p class="author">by <span id="author">{{ game.author or 'Unknown' }}</span></p>
       <p id="description">{{ game.description or '-' }}</p>
+      <p>
+        <a href="../../">
+          <button> BACK TO GALLERY </button>
+        </a></p>
     </aside>
   </main>
   <script type="module">
     import { webEngine } from "https://esm.sh/sprig@1/web";
-
+  
     const canvas = document.getElementById("canvas");
     fetch(`../{{ slug }}.js`)
       .then(r => r.text())
@@ -33,4 +37,5 @@
     document.addEventListener('click', () => canvas.focus());
   </script>
 </body>
+
 </html>

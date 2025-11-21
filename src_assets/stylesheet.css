@@ -173,3 +173,71 @@ select {
   width: 100%;
   user-select: none;
 }
+
+main{
+  display:flex;
+}
+
+aside {
+  font-size: calc(1vw + 1vh);
+  display: block;
+  align-items: center;
+  width: 18%;
+  z-index: 2;
+  text-align: center;
+}
+
+h3, aside{
+  font-size: calc(1vw + 1vh + 10px);
+   margin-bottom: 10px;
+}
+
+button{
+  padding: 10px;
+  background-color: white;
+  font-family: inherit;
+  font-size: 20px;
+  transition: 0.4s ease-in-out;
+}
+
+button:hover{
+  transform: translate(-3px,-5px);
+  box-shadow: 6px 6px;
+}
+button:active{
+  background-color: black;
+  color: white;
+  box-shadow: 6px 6px white;
+}
+
+.author{
+  text-decoration: underline;
+}
+
+#sprig_info{
+  top: 0;
+  left: 0;
+  padding-top: 15%;
+}
+
+#game_info{
+  top: 0;
+  right: 0;
+}
+
+aside img {
+  object-fit: cover;
+  display: inline;
+  border-radius: 100px;
+}
+
+aside>p {
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  width: 60%;
+  flex: 1;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
