@@ -205,7 +205,9 @@ button:hover{
   box-shadow: 6px 6px;
 }
 button:active{
-  transform: scale(-1);
+  background-color: black;
+  color: white;
+  box-shadow: 6px 6px white;
 }
 
 .author{
